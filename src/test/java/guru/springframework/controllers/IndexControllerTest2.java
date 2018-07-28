@@ -4,7 +4,6 @@ import guru.springframework.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -13,11 +12,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -39,9 +35,8 @@ public class IndexControllerTest2 {
 
     @Test
     public void getIndexPage() throws Exception {
-
         when(recipeService.getRecipes()).thenReturn(new HashSet<>());
-        List<String> requestMappings = Arrays.asList("/");
+        List<String> requestMappings = Arrays.asList("/","","/index.html");
 
         for(final String requestMapping : requestMappings) {
             this.mockMvc.perform(get(requestMapping))
